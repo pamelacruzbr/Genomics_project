@@ -1,3 +1,5 @@
+![Header](./banner_g.png)
+
 #### Genomics studies project
 
 I'm gathering in this repository useful functions for genomics data analysis. I have been following the Johns Hopkins University specialisation in Data science for genomics and the courses are being a source of inspiration for this project.
