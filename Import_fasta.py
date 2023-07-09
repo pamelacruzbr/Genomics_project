@@ -1,4 +1,5 @@
-#This is a program that reads fastas and organizes sequences in a dictionary
+"""This script allows parsing through a FASTA file without BioPython.
+    Different from the Bio version, this script will store the Gene IDs and sequences in a dictionary"""
 
 try:
     filename = 'dna.example.fasta'

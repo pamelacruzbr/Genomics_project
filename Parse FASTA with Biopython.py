@@ -1,3 +1,7 @@
+""" This script allows parsing through a FASTA file with multi-entries using BioPython.
+        It will retrieve information from Gene IDs, sequence and sequence lengths and store in lists.
+        It will return the number of entries in the FASTA file """
+
 # Import Biopython library
 from typing import List
 

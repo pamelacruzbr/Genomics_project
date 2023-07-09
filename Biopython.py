@@ -1,3 +1,8 @@
+""" This script allows BLAST alignments using Biopython.
+    It uses a Fasta file containing a DNA sequence of interest for input.
+    All BLAST parameters are standard """
+
+
 import Bio
 from Bio.Blast import NCBIWWW
 
