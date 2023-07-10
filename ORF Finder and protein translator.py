@@ -41,3 +41,7 @@ def parse_sequences(choice):
                                 %(protein[:3], protein[-3:], len(protein), strand, frame)
                             )
 parse_sequences(1)
+
+# Identify ALL ORFS (ATG.. TAA,TAG,TGA
+# Length of ORF, longest and its ID
+# A given ID, find longest ORF, find its start position (frame)

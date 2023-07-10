@@ -43,3 +43,5 @@ def count_seqmaxmin():
         print("There is only one sequence with %d basepairs, its ID is: {}".format((ids[lengths.index(min_seq)])) %min_seq)
 
 count_seqmaxmin()
+
+# Functionalities 1 e 2 of project: Done
