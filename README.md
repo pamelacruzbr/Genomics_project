@@ -6,8 +6,9 @@ I'm gathering in this repository useful functions for genomics data analysis. I 
 
 For now, here are the functionalities I have been added:
 
-  1. FASTA File reading and pre-processing for the sequences.
-  2. Gathering of main information about the sequences, such as GC percentage.
-  3. There is also a function for generation of random DNA sequences for testing.
+  1. FASTA File reading and pre-processing for the sequences (Using Biopython or not - 2 scripts).
+  2. Gather main information about the FASTA, such as entries and lengths.
+  3. BLAST alignment script and processing of results.
+  4. ORF Finder for a FASTA file and protein translation (in progress - Everyday I add more functionalities to this program)
 
-This is a simple project for now, new functionalities are about to come :D
+
