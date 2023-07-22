@@ -99,3 +99,87 @@ def ORF_informations():
     print(len(max_ORF))
 
 ORF_informations()
+
+""" Regex solution 2"""
+
+# First step, parse in the sequences
+# Import Biopython library
+from typing import List
+
+from Bio import SeqIO
+import re
+
+ids = []
+sequences = []
+lengths = []
+
+# Parse FASTA file
+
+for seq_record in SeqIO.parse("dna.example.fasta", "fasta"):
+        ids.append(seq_record.id) # List all IDs
+        sequences.append(seq_record.seq) # List all sequences
+        lengths.append(len(seq_record)) # List all lengths
+
+
+seq_fasta = dict(map(lambda gene,seq : (gene,seq) , ids, sequences))
+
+
+
+pattern = re.compile(r'((?:...)*?)(ATG(?:...)*?(?:TAG|TGA|TAA))')
+
+
+def ORF_finder2(frame=0):
+    lengthorf = 1
+    orf = {
+        'length': 1,
+        'start': 0,
+        'end': 0,
+        'name': ''
+    }
+    if frame > 2 or frame < 0:
+        print("Error: frame has to be between 0 and 2")
+    else:
+        for name, seq in seq_fasta.items():
+            print('seq: ', seq)
+            print('name: ', name)
+            for match in re.finditer(pattern, str(seq[frame:])):
+                group1 = match.group(1)
+                group2 = match.group(2)
+                if group1 is not None:
+                    start = match.start() + len(group1)
+                    end = 0 + match.end()
+                    length = len(group2)
+                    print('start: {}, length:{}'.format(start, length))
+                    print('matchgroup1:', group1)
+                    print('matchgroup2:', group2)
+                    if length >= lengthorf:
+                        lengthorf = length
+                        orf = {
+                            'length': length,
+                            'start': start,
+                            'end': end,
+                            'name': name,
+                            'seq': group2
+                        }
+#         revcomp = seq.reverse_complement()
+#         for match in re.finditer(pattern, str(revcomp[frame:])):
+#                 lenght = match.end() - match.start()
+#                 if length >= lengthorf:
+#                     lengthorf = length
+        print(orf)
+        return print(lengthorf)
+
+
+
+
+#                 print("match", match.group(), "start index", match.start(), "End index", match.end())
+
+
+
+
+
+
+
+#     return ORF_total1
+
+ORF_finder2()
