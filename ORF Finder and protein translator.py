@@ -1,5 +1,3 @@
-""" Regex solution 2"""
-
 # First step, parse in the sequences
 # Import Biopython library
 from typing import List
@@ -109,17 +107,56 @@ def user_choice():
     else: print('error')
     return data
 
+def find_repeats(n=6):
+    sequences = import_fasta()['sequences']
+    repeats = {}
+    for seq in sequences:
+        for i in range(len(seq) - n + 1):
+            repeat = seq[i:i+n]
+            if repeat in repeats:
+                repeats[repeat] += 1
+            else:
+                repeats[repeat] = 1
+    return repeats
 
-def ORF_informations():
+def most_frequent_repeat(repeats):
+    if not repeats:
+        return None, 0
+
+    max_repeat, max_count = max(repeats.items(), key=lambda x: x[1])
+    return max_repeat, max_count
+
+def main():
     data = user_choice()
     sequence = list(data.values())[0]
     if len(data) == 1:
         print(" Your sequence has a length of: {}".format(len(sequence)))
     else:
         count_seqmaxmin()
-    print("Longest ORF in reading frame 1: {}, its start position is: {}, id of the gene: {} \n ".format(ORF_finder2(data, frame=1)['length'], ORF_finder2(data, frame=1)['start'], ORF_finder2(data, frame=1)['name']))
-    print("Longest ORF in reading frame 2: {}, its start position is: {}, id of the gene: {} \n ".format(ORF_finder2(data, frame=2)['length'], ORF_finder2(data, frame=2)['start'], ORF_finder2(data, frame=2)['name']))
-    print("Longest ORF in reading frame 3: {}, its start position is: {}, id of the gene: {} \n ".format(ORF_finder2(data, frame=3)['length'], ORF_finder2(data, frame=3)['start'], ORF_finder2(data, frame=3)['name']))
+    print("Longest ORF in reading frame 1: {}, its start position is: {}, id of the gene: {}, strand: {} \n ".format(ORF_finder2(data, frame=1)['length'], ORF_finder2(data, frame=1)['start'], ORF_finder2(data, frame=1)['name'], ORF_finder2(data, frame=1)['strand']))
+    print("Longest ORF in reading frame 2: {}, its start position is: {}, id of the gene: {}, strand: {} \n ".format(ORF_finder2(data, frame=2)['length'], ORF_finder2(data, frame=2)['start'], ORF_finder2(data, frame=2)['name'], ORF_finder2(data, frame=2)['strand']))
+    print("Longest ORF in reading frame 3: {}, its start position is: {}, id of the gene: {}, strand: {} \n ".format(ORF_finder2(data, frame=3)['length'], ORF_finder2(data, frame=3)['start'], ORF_finder2(data, frame=3)['name'], ORF_finder2(data, frame=2)['strand']))
+    all_repeats = {}
+
+    for header, sequence in data.items():
+        repeats = find_repeats(n=7)
+        all_repeats[header] = repeats
+    print(all_repeats)
+
+    for header, repeats in all_repeats.items():
+        print(f"Repeats in sequence '{header}':")
+        for repeat, count in repeats.items():
+            print(f"{repeat}: {count} times")
+
+    most_frequent_repeats = {}
+    for header, repeats in all_repeats.items():
+        most_frequent_repeat_seq, most_frequent_repeat_count = most_frequent_repeat(repeats)
+        most_frequent_repeats[header] = (most_frequent_repeat_seq, most_frequent_repeat_count)
+
+    print("\nMost frequent repeats:")
+    for header, (repeat, count) in most_frequent_repeats.items():
+        print(f"Sequence '{header}': {repeat} - {count} times")
 
 
-ORF_informations()
+main()
+
