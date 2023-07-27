@@ -98,7 +98,7 @@ def user_choice():
     if typeseq == 'FASTA':
         file = input('Give the name of the FASTA file')
         data = import_fasta(file)['seq_fasta']
-    elif typeseq == 'Single seq':
+    elif typeseq == 'seq':
         data = {}
         identif = ''
         identif = input('Give the name of the gene')

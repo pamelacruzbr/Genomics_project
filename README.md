@@ -6,9 +6,8 @@ I'm gathering in this repository useful functions for genomics data analysis. I 
 
 For now, here are the functionalities I have been added:
 
-  1. FASTA File reading and pre-processing for the sequences (Using Biopython or not - 2 scripts).
-  2. Gather main information about the FASTA, such as entries and lengths.
-  3. BLAST alignment script and processing of results.
-  4. ORF Finder for a FASTA file and protein translation (in progress - Everyday I add more functionalities to this program)
+  1. (Import_fasta and Parse FASTA with Biopython) FASTA File reading and pre-processing for the sequences (Using Biopython or not - 2 scripts).
+  2. (Biopython) BLAST alignment script and processing of results.
+  3. The main, which is a program which accepts singles sequences of FASTA files and will return information regarding the input, including ORF finder and more frequent repeats in your file.
 
 
